@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<title>TP2</title>
+	 <!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	  <link rel="stylesheet" href="style/style.css"/>
+</head>
+<body>
+
+<header>
+<nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Subscribers</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+		<li><a href="/registarSubscriber" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Registar Subscriber</a></li>
+      </ul>
+    </div>
+  </nav> 
+</header>
+	<div>
+	 <table class="container"> 
+		<thead>
+			<tr> 
+				<th>ID Subscriber</th>
+				<th>Nome Subscriber</th>
+				<th> Apagar Subscriber </th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="subscriber : ${subscribers}">
+			<td><span th:text="${subscriber.subCode}"></span></td>
+			<td><a th:href="${(#mvc.url('SC#subscriberDetails').arg(0, subscribers.subTopic)).build()}"><span th:text="${subscribers.nameSubscriber}"></span></a></td>
+			<td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('SC#deleteSubscriber').arg(0, subscribers.subCode)).build()}"><i class="material-icons left">delete</i></a> </td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	<div>
+	<table class ="container newsTable" >
+		<thead>
+			<tr> 
+				<th>ID da Notícia:</th>
+				<th> Tópico da Notícia </th>
+				<th> Conteúdo da Notícia </th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="noticia: ${noticias}">
+			<td><span th:text="${noticia.intNews}"> </span></td>
+			<td><span th:text="${noticia.topic}"> </span></td>
+			<td><span th:text="${noticia.content}"> </span></td>	
+			</tr>
+		</tbody>
+	 </table>
+	</div>
+	<div class = "container formNews">
+		 <table class ="container" >
+		<thead>
+			<tr> 
+				<th>ID da Notícia:</th>
+				<th> Tópico da Notícia </th>
+				<th> Conteúdo da Notícia </th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="news: ${allnews}">
+			<td><span th:text="${news.intNews}"> </span></td>
+			<td><span th:text="${news.topic}"> </span></td>
+			<td><span th:text="${news.content}"> </span></td>	
+			</tr>
+		</tbody>
+	 </table>
+	 </div>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+
+</body>
+
+
+</html>
